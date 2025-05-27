@@ -12,5 +12,24 @@ internal class Program
         commando.Walk();
         commando.Attack();
         weapon.Shoot();
+        Console.WriteLine(commando.CodeName);
+        commando.CodeName = "007";
+        Console.WriteLine(commando.CodeName);
+        Console.WriteLine(commando.SayName(UserRank.Commando));
+        Console.WriteLine(commando.SayName(UserRank.Colonel));
+        Console.WriteLine(commando.SayName(UserRank.General));
+
+
+        Commando[] commandos = 
+            [
+            commando, 
+            new AirCommando("Shimi", "Eagle"), 
+            new SeaCommando("John", "Baby Shark")
+            ];
+
+        foreach (var command in commandos)
+        {
+            command.Attack();
+        }
     }
 }

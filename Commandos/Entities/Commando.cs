@@ -2,7 +2,7 @@
 
 internal class Commando
 {
-    public string Name { get; set; }
+    private readonly string _name;
     public string CodeName { get; set; }
 
     private readonly string[] _tools = ["Hammer", "Chisel", "Rope", "Bag", "Water Bottle"];
@@ -11,7 +11,7 @@ internal class Commando
 
     public Commando(string name, string codeName)
     {
-        Name = name;
+        _name = name;
         CodeName = codeName;
     }
 
@@ -27,8 +27,19 @@ internal class Commando
         Console.WriteLine("Commando is hiding.");
     }
 
-    public void Attack()
+    public virtual void Attack()
     {
         Console.WriteLine($"Commando {CodeName} is attacking");
+    }
+
+    public string SayName(UserRank rank)
+    {
+        return 
+            rank switch
+            {
+                UserRank.Colonel => CodeName,
+                UserRank.General => _name,
+                _ => "Name is confidential",
+            };
     }
 }

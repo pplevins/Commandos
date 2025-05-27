@@ -6,3 +6,11 @@ public enum CommandoStatus
     Walking,
     Hiding
 }
+
+public enum UserRank
+{
+    None,
+    Commando,
+    Colonel,
+    General
+}
