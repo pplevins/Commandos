@@ -27,10 +27,7 @@ internal class Commando
         Console.WriteLine("Commando is hiding.");
     }
 
-    public virtual void Attack()
-    {
-        Console.WriteLine($"Commando {CodeName} is attacking");
-    }
+    public virtual void Attack() => Console.WriteLine($"Commando {CodeName} is attacking");
 
     public string SayName(UserRank rank)
     {

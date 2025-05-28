@@ -4,16 +4,17 @@ namespace Commandos.Factories;
 
 internal class CommandoFactory
 {
+    private readonly Dictionary<string, Func<string, string, Commando>> CommandoRegistry = [];
     public List<Commando> Commandos { get; private set; } = [];
 
-    public Commando CreateCommando(string name, string codeName, string type = "")
+    public void RegisterCommando(string name, Func<string, string, Commando> register)
     {
-        Commando commando = type.ToLower() switch
-        {
-            "sea" => new SeaCommando(name, codeName),
-            "air" => new AirCommando(name, codeName),
-            _ => new Commando(name, codeName),
-        };
+        CommandoRegistry.Add(name, register);
+    }
+
+    public Commando CreateCommando(string name, string codeName, string type = "Commando")
+    {
+        Commando commando = CommandoRegistry[type](name, codeName);
         Commandos.Add(commando);
         return commando;
     }

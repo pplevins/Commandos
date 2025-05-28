@@ -1,18 +1,12 @@
-﻿namespace Commandos.Entities;
+﻿using Commandos.Interfaces;
 
-internal class AirCommando : Commando
+namespace Commandos.Entities;
+
+internal class AirCommando : Commando, IParatrooper
 {
-    public AirCommando(string name, string codeName) : base(name, codeName)
-    {
-    }
+    public AirCommando(string name, string codeName) : base(name, codeName) {}
 
-    public override void Attack()
-    {
-        Console.WriteLine($"Air commando {CodeName} is attacking");
-    }
+    public override void Attack() => Console.WriteLine($"Air commando {CodeName} is attacking");
 
-    public void Parachute()
-    {
-        Console.WriteLine("Air commando is parachuting.");
-    }
+    public void Parachute() => Console.WriteLine("Air commando is parachuting.");
 }

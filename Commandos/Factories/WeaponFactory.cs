@@ -1,14 +1,21 @@
 ﻿using Commandos.Entities;
+using Commandos.Interfaces;
 
 namespace Commandos.Factories;
 
 internal class WeaponFactory
 {
-    public List<Weapon> Weapons { get; private set; } = [];
+    private readonly Dictionary<string, Func<string, string, IWeapon>> WeaponRegistry = [];
+    public List<IWeapon> Weapons { get; } = [];
 
-    public Weapon CreateWeapon(string name, string manufacturer, int bullets)
+    public void RegisterWeapon(string name, Func<string, string, IWeapon> register)
     {
-        Weapon weapon = new(name, manufacturer, bullets);
+        WeaponRegistry.Add(name, register);
+    }
+
+    public IWeapon CreateWeapon(string weaponType, string name, string manufacturer)
+    {
+        IWeapon weapon = WeaponRegistry[weaponType](name, manufacturer);
         Weapons.Add(weapon);
         return weapon;
     }

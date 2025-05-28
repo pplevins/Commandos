@@ -1,16 +1,18 @@
-﻿namespace Commandos.Entities;
+﻿using Commandos.Interfaces;
 
-internal class Weapon
+namespace Commandos.Entities;
+
+internal class Weapon : IWeapon, IShootable
 {
     public string Name { get; set; }
     public string Manufacturer { get; set; }
-    int BulletCount { get; set; }
+    public int BulletCount { get; set; }
 
-    public Weapon(string name, string manufacturer, int bullets) 
+    public Weapon(string name, string manufacturer) 
     {
         Name = name;
         Manufacturer = manufacturer;
-        BulletCount = bullets;
+        BulletCount = 0;
     }
 
     public void Shoot()
